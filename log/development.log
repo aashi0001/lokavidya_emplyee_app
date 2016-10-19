@@ -52787,3 +52787,21 @@ Processing by HomeController#index as HTML
 Completed 200 OK in 102ms (Views: 94.6ms | ActiveRecord: 0.0ms)
 
 
+DEPRECATION WARNING: Passing strings or symbols to the middleware builder is deprecated, please change
+them to actual class references.  For example:
+
+  "Rack::Cors" => Rack::Cors
+
+ (called from <top (required)> at /Users/aashishkhullar/Documents/lokavidya/employee/config/environment.rb:5)
+DEPRECATION WARNING: Using a dynamic :controller segment in a route is deprecated and will be removed in Rails 5.1. (called from block in <top (required)> at /Users/aashishkhullar/Documents/lokavidya/employee/config/routes.rb:32)
+DEPRECATION WARNING: Using a dynamic :action segment in a route is deprecated and will be removed in Rails 5.1. (called from block in <top (required)> at /Users/aashishkhullar/Documents/lokavidya/employee/config/routes.rb:32)
+DEPRECATION WARNING: Using a dynamic :controller segment in a route is deprecated and will be removed in Rails 5.1. (called from block in <top (required)> at /Users/aashishkhullar/Documents/lokavidya/employee/config/routes.rb:33)
+DEPRECATION WARNING: Using a dynamic :action segment in a route is deprecated and will be removed in Rails 5.1. (called from block in <top (required)> at /Users/aashishkhullar/Documents/lokavidya/employee/config/routes.rb:33)
+Started GET "/" for ::1 at 2016-10-19 18:43:35 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (44.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/show.html.erb within layouts/application
+  Rendered home/show.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 2538ms (Views: 2528.4ms | ActiveRecord: 0.0ms)
+
+
