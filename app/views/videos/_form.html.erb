@@ -1,0 +1,91 @@
+<%=form_for :video, :url=>{:action=>'create'},:html=>{:class=>'form-horizontal',:multipart =>'true'} do |f| %>
+  <% if video.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h3>
+
+      <ul>
+      <% video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :name %></div>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :rating %></div>
+    
+    <%= f.radio_button :rating, '1' %>Needs Improvement
+    <%= f.radio_button :rating, '2' %>Average
+    <%= f.radio_button :rating, '3' %>Good
+    <%= f.radio_button :rating, '4' %>Very Good
+    <%= f.radio_button :rating, '5' , :checked => true%>Excellent
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :category %></div>
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :subcategory %></div>
+    <%= f.collection_select(:subcategory, Subcategory.all, :id, :subcategory_name) %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :language %></div>
+    <%= f.text_field :language %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :tags %></div>
+    <%= f.text_area :tags %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :description %></div>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field form-group">
+ 
+    <%= f.hidden_field :uid, value: @id %>
+  </div>
+<% if current_user.is_admin? %>
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :status %></div>
+    <%= f.collection_select(:status, Status.all, :name, :name) %>
+  </div>
+<% end %>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :duration %></div>
+    <%= f.number_field :duration %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :url_name %></div>
+    <%= f.text_field :url_name %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :tumbnail %></div>
+    <%= f.file_field :tumbnail %>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-md-3 text-center"><%= f.label :video, :class => "control-label" %></div>
+    <%= f.file_field :video %>
+  </div>
+
+  <div class="actions form-group">
+       <div class="col-md-12 text-center">
+        <%= f.submit "Upload", :class => "btn btn-small btn-primary btn-inverse" %>
+
+       </div>
+  </div>
+<% end %>

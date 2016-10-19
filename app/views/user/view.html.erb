@@ -1,0 +1,11 @@
+<h1>Users</h1><br>
+<% @users.each do|u| %>
+<div class="col-md-2"><%= u.name %></div>
+<div class="col-md-3"><%= u.email %></div>
+
+<% if can? :role, @user %>
+<div class="col-md-3">
+	<%= button_to 'Assign Roles',  { :controller => 'user', :action => 'role',:id => u.id},class: "btn btn-default" %>
+</div><br>
+<% end %>
+<% end %>

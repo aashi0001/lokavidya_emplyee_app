@@ -1,0 +1,17 @@
+<h3>Please Assign the Role to the User</h3>
+<%= button_to 'View Role Permissions',  { :controller => 'user', :action => 'role_permissions'}, class: "btn btn-info"  %><br>
+<%= form_for :user, :url=>{:action=>'update_role'},:method=>"get",:html=>{:class=>'form-horizontal'} do |f|%>
+
+<div class="form-group">
+    <label class="col-md-1 control-label text-center" for="textinput">Role</label>
+    <div class="col-md-3">
+
+	<%= f.collection_select(:role, Role.all, :name, :name) %>
+
+    <%= f.hidden_field :userid, value: @id %>
+    </div>
+  </div>
+  <div class="col-md-12 text-left">
+  <%= f.submit "save", class: "btn btn-default"  %>
+  </div>
+<% end %>

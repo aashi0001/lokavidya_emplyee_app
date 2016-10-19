@@ -1,0 +1,2 @@
+json.extract! video, :id, :name, :rating, :category, :subcategory, :language, :tags, :description, :uid, :status, :duration, :url_name, :tumbnail, :video, :created_at, :updated_at
+json.url video_url(video, format: :json)

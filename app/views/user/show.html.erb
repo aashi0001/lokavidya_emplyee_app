@@ -1,0 +1,8 @@
+<h1>Users</h1><br>
+<% @users.each do|u| %>
+<div class="col-md-2"><%= u.name %></div>
+<div class="col-md-3"><%= u.email %></div>
+<div class="col-md-3">
+	<%= button_to 'Add priviliages',  { :controller => 'user', :action => 'edit',:id => u.id}, class: "btn btn-info"  %>
+</div><br>
+<% end %>

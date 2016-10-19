@@ -1,0 +1,11 @@
+<% @videos.each do |video| %>
+<div class="col-md-3">
+	<strong>Video:&nbsp;<%= video.name  %></strong>
+      <video width="320" height="240" poster="<%= video.tumbnail_url(:small) %>" controls>
+        <source src="<%= video.video %>" type="video/mp4">
+        Your browser does not support the video
+      </video>
+      
+</div>
+<div class="col-md-offset-3"></div>
+<% end %>
