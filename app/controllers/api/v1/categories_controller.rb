@@ -5,7 +5,8 @@ class Api::V1::CategoriesController < ApplicationController
   def index
     @categories = Category.all
 
-    render json: @categories.name
+    render :json => @categories.map { |c| {:name => c.name} }
+
   end
 
   # GET /categories/1
