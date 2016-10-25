@@ -3,16 +3,23 @@ class Api::V1::CategoriesController < ApplicationController
   
   # GET /categories
   def index
-    @categories = Category.all
-
-    render :json => @categories.map { |c| {:name => c.name} }
+    @categories = Category.page(params[:page]).per(10)
+    # @videos = category.videos
+    render :json => @categories.map { |c| {:id => c.id,:name => c.name, 'Videos' => c.videos.page(params[:page]).per(10).order('created_at DESC').map {|video| {:name => video.name, :rating => video.rating, :category => video.category.name , :language => video.language, :tags => video.tags, :description => video.description, :duration => video.duration, :thumbnail => video.tumbnail, :video_file => video.video}}} }
 
   end
 
   # GET /categories/1
-  # def show
-  #   render json: @category
-  # end
+  def viewAll
+    @unique  = params[:id]
+    @categories = Category.find_by(id: @unique)
+    if !@categories.nil?
+      render :json => {'Videos' => @categories.videos.page(params[:page]).per(10).order('created_at DESC').map {|video| {:name => video.name, :rating => video.rating, :category => video.category.name , :language => video.language, :tags => video.tags, :description => video.description, :duration => video.duration, :thumbnail => video.tumbnail, :video_file => video.video}}}
+    else
+      notice = {:status => 404, :message => "No videos Exist"}
+      render :json => notice
+    end
+  end
 
   # # POST /categories
   # def create

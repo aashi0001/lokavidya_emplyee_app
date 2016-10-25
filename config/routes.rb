@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :categories, only: [:index,:show, :create, :update, :destroy]
+      resources :categories, only: [:index,:show, :create, :update, :destroy]do
+        collection do
+            get 'viewAll'
+          end
+        end
       resources :videos, only: [:index]do
         collection do
             get 'limit'

@@ -41,6 +41,9 @@ gem 'rack-attack'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'kaminari'
+ gem 'pager_api'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

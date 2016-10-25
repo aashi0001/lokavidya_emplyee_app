@@ -3,7 +3,7 @@ class Api::V1::VideosController < ApplicationController
   
   # GET /videos
   def index
-    @videos = Video.all
+    @videos = Video.all.page(params[:page]).per(10).order('created_at DESC')
     #render json: @videos
      render :json => @videos.map { |video| {:name => video.name, :rating => video.rating, :category => video.category.name , :language => video.language, :tags => video.tags, :description => video.description, :duration => video.duration, :thumbnail => video.tumbnail, :video_file => video.video} }
      #return render :json => msg
@@ -16,7 +16,7 @@ class Api::V1::VideosController < ApplicationController
 
   def search
     search = params[:name]
-    @videos = Video.where("name LIKE ?" ,"%#{search}%")
+    @videos = Video.page(params[:page]).per(10).order('created_at DESC').where("name LIKE ?" ,"%#{search}%")
     if !@videos.empty?
     render :json => @videos.map { |video| {:name => video.name, :rating => video.rating, :category => video.category.name , :language => video.language, :tags => video.tags, :description => video.description, :duration => video.duration, :thumbnail => video.tumbnail, :video_file => video.video} }
     else
